@@ -1,0 +1,63 @@
+{% extends "layout/layout.html" %}
+{% block content %}
+<div class="container">
+    
+    <!-- <div class="row justify-content-end mb-2">
+        <div class="col-3">
+            <form action="{{ url_for('sync') }}" method="POST">
+                <input type="submit" class="btn btn-outline-dark btn-lg" value="SYNC">
+            </form>
+            <form method="post" action="/">
+                <input type="submit" class="btn btn-outline-dark btn-lg" value="SYNC" name="sync"/>
+            </form>
+            <button type="button" class="btn btn-outline-dark btn-lg">SYNC</button>
+        </div>
+    </div> -->
+    <div class="row mb-4">
+        <div class="col-8">
+            <h1>{{ pyflower.flower_name }}</h1>
+        </div>
+        <div class="col-4">
+            <a href="{{ url_for('azuriranje_biljke', flower_id=pyflower.id) }}"
+                class="btn btn-secondary btn-lg m-1">AŽURIRAJ</a>
+            <button type="button" class="btn btn-danger btn-lg m-1" data-bs-toggle="modal"
+                data-bs-target="#deleteModal">Obriši biljku</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-muted mb-4">Njega biljke</h2>
+            <ul class="list-styled">
+                <li>Vlažnost tla: {{ pyflower.soil_humidity }} %</li>
+                <li>pH vrijednost: {{ pyflower.soil_ph }}</li>
+                <li>Salinitet: {{ pyflower.soil_ph }} mg/L</li>
+                <li>Temperatura zraka: {{ pyflower.env_temperature }} ℃</li>
+                <li>Razina svjetla: {{ pyflower.light_intensity }} luksa</li>
+            </ul>
+        </div>
+        <div class="col-6">
+            {% set image_file = url_for('static', filename='assets/biljke/' + pyflower.flower_img) %}
+            <img class="rounded img-fluid" style="padding-top: 5px" src="{{ image_file }}">
+        </div>
+    </div>
+</div>
+<!-- Vertically centered modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Obriši biljku?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odustani</button>
+                <!-- <button type="button" class="btn btn-primary">OBRIŠI</button> -->
+                <form action="{{ url_for('obrisi_biljku', flower_id=pyflower.id) }}" method="POST">
+                    <input type="submit" class="btn btn-danger" value="OBRIŠI">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

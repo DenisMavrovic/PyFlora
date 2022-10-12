@@ -1,0 +1,48 @@
+{% extends "layout/layout.html" %}
+{% block content %}
+<div class="col-lg-5 container mb-3">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <!-- {% if form.errors %}
+        {{ form.errors }}
+        {% endif %} -->
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Izradite svoj PyFlora račun</legend>
+            <div class="row mb-3">
+                <div class="col">
+                    {{ form.first_name.label(class="form-label")}}
+                    {{ form.first_name(class="form-control form-control-lg")}}
+                </div>
+                <div class="col">
+                    {{ form.last_name.label(class="form-label")}}
+                    {{ form.last_name(class="form-control form-control-lg")}}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    {{ form.username.label(class="form-label")}}
+                    {{ form.username(class="form-control form-control-lg")}}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    {{ form.password.label(class="form-label")}}
+                    {{ form.password(class="form-control form-control-lg")}}
+                </div>
+                <div class="col">
+                    {{ form.confirm_password.label(class="form-label")}}
+                    {{ form.confirm_password(class="form-control form-control-lg")}}
+                </div>
+            </div>
+        </fieldset>
+        <div class="mb-3">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+</div>
+<div class="col-lg-5 container border-top pt-3">
+    <small class="text-muted">
+        Imate račun? <a href="{{ url_for('index') }}" class="ml-2" style="text-decoration: none;">Prijavite se</a>
+    </small>
+</div>
+{% endblock content %}

@@ -1,0 +1,53 @@
+{% extends "layout/layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-end">
+        <div class="col-3">
+            <form action="{{ url_for('sync') }}" method="POST">
+                <input type="submit" class="btn btn-outline-dark btn-lg" value="SYNC">
+            </form>
+            <!-- <form method="post" action="/">
+                <input type="submit" class="btn btn-outline-dark btn-lg" value="SYNC" name="sync"/>
+            </form> -->
+            <!-- <button type="button" class="btn btn-outline-dark btn-lg">SYNC</button> -->
+        </div>
+    </div>
+    <div class="row justify-content-center my-3 mx-3">
+        {% for pyflower in pyflowers %}
+        <div class="col-md-5">
+            <div class="card mb-3" style="max-width: 540px; min-height: 200px;">
+                <div class="row g-0">
+                    <div class="col-md-6">
+                        {% set image_file = url_for('static', filename='assets/biljke/' + pyflower.flower_img) %}
+                        <img src="{{ image_file }}"
+                            class="img-fluid rounded-start" alt="Biljka" style="height: 100%;">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">{{ pyflower.flower_name }}</h5>
+                            <p class="card-text mb-0">Vlažnost tla: {{ pyflower.soil_humidity }} %</p>
+                            <p class="card-text mb-0">pH vrijednost: {{ pyflower.soil_ph }}</p>                            
+                            <p class="card-text mb-0">Salinitet: {{ pyflower.soil_ph }} mg/L</p>                            
+                            <p class="card-text mb-0">Temperatura zraka: {{ pyflower.env_temperature }} ℃</p>                            
+                            <p class="card-text mb-0">Razina svjetla: {{ pyflower.light_intensity }} luksa</p>                            
+                            <a href="{{ url_for('biljka', flower_id=pyflower.id) }}" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="col-md-5">
+        <div class="card text-center">
+            
+                <div class="card-body">
+                    <h2 class="card-title article-title">+</h2>
+                    <p class="card-text article-title">Dodajte novu</br>Biljku</p>
+                    <a href="{{ url_for('dodavanje_biljke') }}" class="stretched-link"></a>
+                </div>
+            
+        </div>
+    </div>
+</div>
+</div>
+{% endblock content %}

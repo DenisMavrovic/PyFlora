@@ -1,0 +1,53 @@
+{% extends "layout/layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-end">
+        <div class="col-3">
+            <form action="{{ url_for('sync') }}" method="POST">
+                <input type="submit" class="btn btn-outline-dark btn-lg" value="SYNC">
+            </form>
+            <!-- <form method="post" action="/">
+                <input type="submit" class="btn btn-outline-dark btn-lg" value="SYNC" name="sync"/>
+            </form> -->
+            <!-- <button type="button" class="btn btn-outline-dark btn-lg">SYNC</button> -->
+        </div>
+    </div>
+    <div class="row justify-content-center my-3 mx-3">
+        {% for pypot in pypots %}
+        <div class="col-md-5">            
+            <div class="card mb-3" style="max-width: 540px; min-height: 200px;">
+                <div class="row g-0">
+                    <div class="col-md-6">
+                        
+                        <img src="{{ url_for('static', filename='assets/imgs/posuda-sa-cvijecem.jpg') }}"
+                            class="img-fluid rounded-start" alt="Biljka" style="height: 100%;">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-5">{{ pypot.pot_name }}</h5>
+                            <p class="card-text pt-5 mb-0">Status</p>
+                            <p class="card-text">Zasađena posuda</p>
+                            <a href="{{ url_for('posuda', pot_id=pypot.id, flower_id=pypot.flower_id) }}" class="stretched-link"></a>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-2 align-self-end">
+                        <img src="{{ url_for('static', filename='assets/imgs/question-mark.png') }}" alt=""                     class="img-fluid mb-3" width="40" height="40">
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="col-md-5">
+            <div class="card text-center">
+                
+                    <div class="card-body">
+                        <h2 class="card-title article-title">+</h2>
+                        <p class="card-text article-title">Dodajte novu</br>PyPosudu</p>
+                        <a href="{{ url_for('dodavanje_posude') }}" class="stretched-link"></a>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

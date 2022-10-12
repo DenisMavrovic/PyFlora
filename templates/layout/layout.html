@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/favicon/favicon.ico') }}">
+
+    {% if title %}
+    <title>PyFloraPosuda - {{ title }}</title>
+    {% else %}
+    <title>PyFloraPosuda</title>
+    {% endif %}
+</head>
+
+<body>
+    {% include 'layout/_navbar.html' %}
+
+    <div class="container my-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- {% include 'layout/_footer.html' %} -->
+
+    {% block scripts %}
+    <script src="{{ url_for('static', filename='js/bootstrap/bootstrap.bundle.min.js') }}"></script>
+    {% endblock %}
+</body>
+
+</html>

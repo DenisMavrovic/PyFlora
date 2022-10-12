@@ -1,0 +1,51 @@
+{% extends "layout/layout.html" %}
+{% block content %}
+<div class="col-lg-5 container">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Ažurirajte podatke</legend>
+            <div class="row mb-3">
+                <div class="col">
+                    {{ form.flower_name.label(class="form-control-label") }}
+                    {{ form.flower_name(class="form-control form-control-lg") }}
+                </div>
+                <div class="col">
+                    {{ form.soil_humidity.label(class="form-control-label") }}
+                    {{ form.soil_humidity(class="form-control form-control-lg") }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    {{ form.soil_ph.label(class="form-control-label") }}
+                    {{ form.soil_ph(class="form-control form-control-lg") }}
+                </div>
+                <div class="col">
+                    {{ form.soil_salinity.label(class="form-control-label") }}
+                    {{ form.soil_salinity(class="form-control form-control-lg") }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    {{ form.env_temperature.label(class="form-control-label") }}
+                    {{ form.env_temperature(class="form-control form-control-lg") }}
+                </div>
+                <div class="col">
+                    {{ form.light_intensity.label(class="form-control-label") }}
+                    {{ form.light_intensity(class="form-control form-control-lg") }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    {{ form.flower_img.label()}}
+                    {{ form.flower_img(class="form-control-file")}}
+                </div>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                {{ form.submit(class="btn btn-info") }}
+                {{ form.discard(class="btn btn-warning") }}
+            </div>
+        </fieldset>
+    </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,31 @@
+{% extends "layout/layout.html" %}
+{% block content %}
+<div class="col-lg-5 container">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Ažurirajte podatke</legend>
+            <div class="row mb-3">
+                <div class="col">
+                    {{ form.name.label(class="form-control-label") }}
+                    {{ form.name(class="form-control form-control-lg") }}
+                </div>
+                <div class="col">
+                    {{ form.flower.label(class="form-control-label") }}
+                    {{ form.flower(class="form-control form-control-lg") }}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    {{ form.location.label(class="form-label")}}
+                    {{ form.location(class="form-control form-control-lg")}}
+                </div>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                {{ form.submit(class="btn btn-info") }}
+                {{ form.discard(class="btn btn-warning") }}
+            </div>
+        </fieldset>
+    </form>
+</div>
+{% endblock content %}
